@@ -27,13 +27,19 @@ namespace Elongear.Server.Engines
     public class HttpSession : NetCoreServer.HttpSession
     {
         public HttpSession(NetCoreServer.HttpServer server) : base(server) { }
-
+        
+        protected void SendFile()
+        {
+            var response = Response.MakeGetResponse(;
+            response.
+        }
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
             string message = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
             Console.WriteLine("Incoming: " + message);
             base.OnReceived(buffer, offset, size);
         }
+
         protected override async void OnReceivedRequest(HttpRequest request)
         {
             //var respon = Response.MakeGetResponse();
